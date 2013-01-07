@@ -1,0 +1,1 @@
+local ply = FindMetaTable("Player")
