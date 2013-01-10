@@ -5,10 +5,11 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 
-
+-- 	include( String Filename )
+--
+include("utilities/install.lua")
 include("shared.lua")
-include("player.lua")
-include("db.lua")
+include("utilities/db.lua")
 
 -- GM:PlayerConnect( String name, String address ) 
 -- Called whenever a player connects

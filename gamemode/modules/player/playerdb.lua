@@ -4,25 +4,25 @@ schema['players'] = {
 		['id'] = {
 			['description'] = 'Primary identifier for a player',
 			['type'] = 'int',
-			['unsigned'] = TRUE,
-			['not null'] = TRUE
+			['unsigned'] = true,
+			['not null'] = true,
+			['auto increment'] = true
 		},
 		['steamid'] = {
 			['description'] = 'SteamID identifier for a player',
 			['type'] = 'varchar',
-			['unsigned'] = TRUE,
-			['not null'] = TRUE,
-			['length'] = '25'
+			['not null'] = true,
+			['length'] = 25
 		},
 		['characterLimit'] = {
 			['description'] = 'How many characters this player may create',
 			['type'] = 'int',
-			['unsigned'] = TRUE,
-			['not null'] = TRUE,
-			['default'] = '1'
+			['unsigned'] = true,
+			['not null'] = true,
+			['default'] = 1
 		}
 	},
-	['primary key'] = {'id'}
+	['primary key'] = 'id'
 }
 	
 schema['roles'] = {
@@ -31,43 +31,47 @@ schema['roles'] = {
 		['id'] = {
 			['description'] = 'Primary identifier for a role',
 			['type'] = 'int',
-			['unsigned'] = TRUE,
-			['not null'] = TRUE
+			['unsigned'] = true,
+			['not null'] = true,
+			['auto increment'] = true
 			},
 		['title'] = {
 			['description'] = 'Name of the role for permissions',
 			['type'] = 'varchar',
-			['length'] = '60',
-			['not null'] = TRUE
+			['length'] = 60,
+			['not null'] = true
 		},
 		['description'] = {
 			['description'] =	'Description of this role',
 			['type'] = 'varchar',
-			['length'] = '255',
-			['not null'] = TRUE,
+			['length'] = 255,
+			['not null'] = true,
 			['default'] = ''
 		}
-	}
-	['primary key'] = {'id'}
+	},
+	['primary key'] = 'id'
 }
 
 schema['playerRoles'] = {
 	['description'] = 'Index of players and respective role assignments',
 	['fields'] = {
 		['playerId'] = {
-			['description'] = 'Player Identifier',
+			['description'] = 'Foreign Key for Player Identifier',
 			['type'] = 'int',
-			['unsigned'] = TRUE,
-			['not null'] = TRUE
+			['unsigned'] = true,
+			['not null'] = true,
 		},
 		['roleId'] = {
-			['description'] = 'Role Identifier',
+			['description'] = 'Foreign key for Role Identifier',
 			['type'] = 'int',
-			['unsigned'] = TRUE,
-			['not null'] = TRUE,
-			['default'] = '0'
-			
+			['unsigned'] = true,
+			['not null'] = true,
+			['default'] = 0,
 		}
+	},
+	['foreign key'] = {
+		['playerId'] = 'players(id)',
+		['roleId'] = 'roles(id)'
 	}
 }
 
@@ -77,21 +81,22 @@ schema['permissions'] = {
 		['id'] = {
 			['description'] = 'Primary identifier for permission',
 			['type'] = 'int',
-			['unsigned'] = TRUE,
-			['not null'] = TRUE
+			['unsigned'] = true,
+			['not null'] = true,
+			['auto increment'] = true			
 			},
 		['title'] = {
 			['description'] = 'Description of permission for role',
 			['type'] = 'varchar',
-			['length'] = '60',
-			['not null'] = TRUE
-		}
+			['length'] = 60,
+			['not null'] = true
+		},
 		['name'] = {
 			['description'] = 'Name of permission to be returned to gamemode',
 			['type'] = 'varchar',
-			['length'] = '60',
-			['not null'] = TRUE
+			['length'] = 60,
+			['not null'] = true
 		}	
-	}
-	['primary key'] = {'id'}
+	},
+	['primary key'] = 'id'
 }
